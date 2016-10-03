@@ -66,7 +66,7 @@ func (cors *cors) validateOrigin(origin string) bool {
 }
 
 func (cors *cors) handlePreflight(c *gin.Context) {
-	c.AbortWithStatus(200)
+	defer c.AbortWithStatus(200)
 	header := c.Writer.Header()
 	for key, value := range cors.preflightHeaders {
 		header[key] = value
